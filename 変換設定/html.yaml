@@ -1,0 +1,6 @@
+metadata-file: 変換設定/メタデータ.yaml
+from: markdown
+to: html5
+standalone: true
+embed-resources: true
+output-file: 出力/ネットワーク・セキュリティ教科書.html

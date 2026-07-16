@@ -1,0 +1,14 @@
+/出力/*
+!/出力/.gitkeep
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.vscode/
+.idea/
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.tex

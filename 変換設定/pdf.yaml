@@ -1,0 +1,9 @@
+metadata-file: 変換設定/メタデータ.yaml
+from: markdown
+to: pdf
+pdf-engine: lualatex
+variables:
+  documentclass: ltjsbook
+  mainfont: HaranoAjiMincho
+  sansfont: HaranoAjiGothic
+output-file: 出力/ネットワーク・セキュリティ教科書.pdf
