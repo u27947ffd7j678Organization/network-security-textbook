@@ -91,6 +91,45 @@ curl -v https://www.example.com/
 journalctl -k --since "10 minutes ago"
 ```
 
+代表的な出力例（必要な部分のみ抜粋）
+
+```text
+$ ip -br link
+lo      UNKNOWN  <LOOPBACK,UP,LOWER_UP>
+eth0    UP       <BROADCAST,MULTICAST,UP,LOWER_UP>
+
+$ ip -br address
+lo      UNKNOWN  127.0.0.1/8 ::1/128
+eth0    UP       192.0.2.10/24
+
+$ ip route get 198.51.100.20
+198.51.100.20 via 192.0.2.1 dev eth0 src 192.0.2.10
+
+$ getent hosts www.example.com
+93.184.216.34  www.example.com
+
+$ ss -lntup
+Netid State  Local Address:Port  Process
+tcp   LISTEN 0.0.0.0:22         users:(("sshd",pid=742,fd=3))
+
+$ curl -v https://www.example.com/
+* Connected to www.example.com (93.184.216.34) port 443
+< HTTP/2 200
+
+$ journalctl -k --since "10 minutes ago"
+Jul 17 09:12:04 host kernel: eth0: Link is Up - 1Gbps/Full
+```
+
+確認ポイント
+
+- `lo` はループバック、`eth0` はこの例の物理インターフェースです。
+- `inet` に相当する `192.0.2.10/24` がIPv4アドレス、`::1/128` がIPv6のループバックアドレスです。
+- `via` が次に渡すゲートウェイ、`dev` が出力インターフェース、`src` が送信元IPアドレスです。
+- `getent hosts` のIPアドレスで、名前解決結果を確認します。
+- `LISTEN` は待受状態です。`0.0.0.0:22` は全IPv4インターフェースの22番ポートを表します。
+- `Connected` はTCP接続の成立、`HTTP/2 200` はHTTP要求の成功を示します。
+- `Link is Up` はカーネルがリンク確立を記録したメッセージです。直前に `Link is Down` がないかも確認します。
+
 従来の `ifconfig` や `netstat` を見かけることもありますが、本書では現在のLinuxで標準的なiproute2の `ip` と `ss` を基本とします。
 
 設定変更コマンドは接続断を起こす可能性があります。SSH接続中の本番サーバでは、復旧手段と変更手順を確認せずにアドレスや経路を変更しません。
