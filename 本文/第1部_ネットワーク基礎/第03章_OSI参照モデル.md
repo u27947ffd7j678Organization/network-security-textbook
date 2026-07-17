@@ -84,6 +84,38 @@ ss -lntup
 curl -I https://www.example.com/
 ```
 
+代表的な出力例（必要な部分のみ抜粋）
+
+```text
+$ ip -s link show dev eth0
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 ...
+    RX: bytes  packets  errors  dropped
+        84521      620       0        0
+    TX: bytes  packets  errors  dropped
+        60112      508       0        0
+
+$ ip address show dev eth0
+    inet 192.0.2.10/24 scope global eth0
+
+$ ip route
+default via 192.0.2.1 dev eth0
+
+$ ss -lnt
+State  Local Address:Port
+LISTEN 0.0.0.0:22
+
+$ curl -I https://www.example.com/
+HTTP/2 200
+```
+
+確認ポイント
+
+- `LOWER_UP` は物理リンクが利用可能であること、`errors` と `dropped` は送受信時の異常や破棄数を示します。
+- `inet` がIPv4アドレス、`/24` がプレフィックス長です。
+- `default via` の後ろがデフォルトゲートウェイです。
+- `LISTEN` はアプリケーションが接続を待ち受けている状態です。
+- HTTPステータスまで返れば、少なくとも下位層からアプリケーション層まで通信が進んだと判断できます。
+
 `ip -s link` のエラーやドロップが増えていれば下位層を疑い、TCP接続までは成功してHTTPエラーが返るなら上位層を疑います。
 
 # 7. 実務ではどう使われるか
