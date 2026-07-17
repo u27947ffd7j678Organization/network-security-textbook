@@ -2,7 +2,7 @@
 title: 第07章 DHCP
 part: 第2部 IPネットワークの基礎
 chapter: 7
-version: 0.1
+version: 0.2
 status: Draft
 ---
 
@@ -30,7 +30,7 @@ status: Draft
 
 端末が少なければ、一台ずつ手作業でIPアドレスを設定できます。しかし、数百台のPCや一時的に接続する端末を管理すると、入力ミス、重複IP、設定変更の手間が増えます。
 
-そこで、端末へネットワーク設定を自動配布する**DHCP（Dynamic Host Configuration Protocol）**が使われます。
+そこで、主にLAN内の端末へネットワーク設定を自動配布する**DHCP（Dynamic Host Configuration Protocol）**が使われます。家庭、企業、学校など、端末の接続・切断や入れ替えがあるLANでは一般的な仕組みです。
 
 # 4. 技術の概要
 
@@ -44,6 +44,32 @@ DHCPでは、代表的に次の情報を配布できます。
 - ドメイン名などの追加情報
 
 設定を要求する端末をDHCPクライアント、設定を提供する機器をDHCPサーバと呼びます。家庭用ルータがDHCPサーバを兼ねることも一般的です。
+
+## DHCPはどこまで使われるのか
+
+DHCPは、利用者端末が接続するLANで特に広く使われます。一方、インターネット全体のルータへDHCPで経路を配布する仕組みではありません。
+
+- 家庭・企業・学校のLAN：PC、スマートフォン、プリンタなどへDHCPで設定することが一般的
+- サーバ用LAN：DHCPの固定割り当て、または管理された静的設定を使う場合がある
+- ISPから家庭用ルータのWAN側：接続方式に応じ、DHCPや**PPPoE（Point-to-Point Protocol over Ethernet）**などで設定を受け取る場合がある
+- ISP・通信事業者の基幹ネットワーク：管理された固定設定や、組織内の経路交換に使われる**OSPF（Open Shortest Path First）**、組織間の経路交換に使われる**BGP（Border Gateway Protocol）**などを用途に応じて使う
+
+DHCPは端末のアドレス設定を自動化し、OSPFやBGPはルータ間で経路情報を交換します。目的が異なるため、置き換え関係ではありません。
+
+```mermaid
+flowchart LR
+    subgraph LAN["家庭内LAN"]
+        PC["PC<br/>192.168.1.10"]
+        PHONE["スマートフォン<br/>192.168.1.11"]
+        ROUTER_LAN["家庭用ルータ LAN側<br/>192.168.1.1<br/>DHCPサーバ"]
+        PC --> ROUTER_LAN
+        PHONE --> ROUTER_LAN
+    end
+    ROUTER_LAN --> ROUTER_WAN["家庭用ルータ WAN側<br/>ISPから取得したIP"]
+    ROUTER_WAN --> ISP["ISPネットワーク"]
+```
+
+同じ家庭用ルータでも、LAN側では端末へ設定を配るDHCPサーバとして動作し、WAN側ではISPから設定を受け取るDHCPクライアントとして動作する場合があります。
 
 # 5. 詳しい仕組み
 
