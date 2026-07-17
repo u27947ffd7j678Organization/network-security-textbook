@@ -84,6 +84,33 @@ ip -s link
 nstat
 ```
 
+代表的な出力例（必要な部分のみ抜粋）
+
+```text
+$ ip address show dev eth0
+    inet 192.0.2.10/24 scope global eth0
+
+$ ip route get 192.0.2.20
+192.0.2.20 dev eth0 src 192.0.2.10
+
+$ ss -tulnp
+Netid State  Local Address:Port  Process
+tcp   LISTEN 0.0.0.0:22         users:(("sshd",pid=742,fd=3))
+udp   UNCONN 127.0.0.53:53      ...
+
+$ nstat
+TcpRetransSegs  3
+IpInReceives    18420
+```
+
+確認ポイント
+
+- `inet` がIPv4アドレス、`/24` がネットワーク範囲を表すプレフィックス長です。
+- `dev eth0` は使用するインターフェース、`src` は送信元として選ばれるIPアドレスです。
+- `LISTEN` はTCPの待受状態、`0.0.0.0:22` は全IPv4インターフェースの22番ポートで待ち受けることを示します。
+- `UNCONN` はUDPソケットでよく表示される未接続状態です。
+- `TcpRetransSegs` はTCP再送数です。単発の値だけでなく、障害発生中に増え続けるかを確認します。
+
 `ss -tulnp` は管理権限がないとプロセス情報の一部を表示できません。コマンド結果を共有するときは、社内IPアドレスなどの情報を不用意に公開しないよう注意します。
 
 # 7. 実務ではどう使われるか
@@ -96,6 +123,22 @@ nstat
 ss -lntp
 ip route get 198.51.100.20
 ```
+
+代表的な出力例（必要な部分のみ抜粋）
+
+```text
+$ ss -lntp
+State  Local Address:Port  Process
+LISTEN 127.0.0.1:8080      users:(("app",pid=1250,fd=7))
+
+$ ip route get 198.51.100.20
+198.51.100.20 via 192.0.2.1 dev eth0 src 192.0.2.10
+```
+
+確認ポイント
+
+- `127.0.0.1:8080` はループバックアドレスだけで待ち受けているため、通常は別端末から接続できません。
+- `via` がゲートウェイ、`dev` が出力インターフェース、`src` が選択された送信元IPアドレスです。
 
 アプリケーション、トランスポート、インターネット、リンクの各層を分けて確認します。
 
