@@ -1,12 +1,12 @@
 ---
-title: 第03章 DNS
-part: 第3部 アプリケーション通信の基礎
-chapter: 3
+title: 第02章 DNS
+part: 第3部 アプリケーションプロトコル
+chapter: 2
 version: 0.1
 status: Draft
 ---
 
-# 第03章 DNS
+# 第02章 DNS
 
 **― 名前から接続先を見つける分散データベース ―**
 

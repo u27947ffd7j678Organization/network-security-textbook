@@ -1,12 +1,12 @@
 ---
-title: 第04章 TLS／SSL
-part: 第3部 アプリケーション通信の基礎
-chapter: 4
+title: 第03章 TLS／SSL
+part: 第3部 アプリケーションプロトコル
+chapter: 3
 version: 0.2
 status: Draft
 ---
 
-# 第04章 TLS／SSL
+# 第03章 TLS／SSL
 
 **― 相手を確かめ、通信内容を暗号化する ―**
 

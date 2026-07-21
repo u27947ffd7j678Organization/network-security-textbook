@@ -1,6 +1,6 @@
 ---
 title: 第03章 MACアドレス
-part: 第2部 IPネットワークの基礎
+part: 第2部 IP・TCP/IP・LAN技術
 chapter: 3
 version: 0.2
 status: Draft

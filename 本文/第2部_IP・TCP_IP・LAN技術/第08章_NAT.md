@@ -1,6 +1,6 @@
 ---
 title: 第08章 NAT
-part: 第2部 IPネットワークの基礎
+part: 第2部 IP・TCP/IP・LAN技術
 chapter: 8
 version: 0.2
 status: Draft

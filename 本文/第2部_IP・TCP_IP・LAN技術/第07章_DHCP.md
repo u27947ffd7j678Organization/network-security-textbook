@@ -1,6 +1,6 @@
 ---
 title: 第07章 DHCP
-part: 第2部 IPネットワークの基礎
+part: 第2部 IP・TCP/IP・LAN技術
 chapter: 7
 version: 0.2
 status: Draft

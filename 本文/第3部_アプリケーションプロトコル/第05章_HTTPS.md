@@ -1,12 +1,12 @@
 ---
-title: 第06章 HTTPS
-part: 第3部 アプリケーション通信の基礎
-chapter: 6
+title: 第05章 HTTPS
+part: 第3部 アプリケーションプロトコル
+chapter: 5
 version: 0.2
 status: Draft
 ---
 
-# 第06章 HTTPS
+# 第05章 HTTPS
 
 **― URL入力から安全なWebページ表示まで ―**
 

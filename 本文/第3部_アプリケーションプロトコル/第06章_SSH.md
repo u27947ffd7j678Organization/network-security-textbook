@@ -1,12 +1,12 @@
 ---
-title: 第07章 SSH
-part: 第3部 アプリケーション通信の基礎
-chapter: 7
+title: 第06章 SSH
+part: 第3部 アプリケーションプロトコル
+chapter: 6
 version: 0.2
 status: Draft
 ---
 
-# 第07章 SSH
+# 第06章 SSH
 
 **― Linuxサーバを安全に遠隔操作する ―**
 

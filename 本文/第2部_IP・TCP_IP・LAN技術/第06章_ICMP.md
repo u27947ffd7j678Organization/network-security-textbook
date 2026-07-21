@@ -1,6 +1,6 @@
 ---
 title: 第06章 ICMP
-part: 第2部 IPネットワークの基礎
+part: 第2部 IP・TCP/IP・LAN技術
 chapter: 6
 version: 0.1
 status: Draft

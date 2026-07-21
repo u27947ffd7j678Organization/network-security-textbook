@@ -1,12 +1,12 @@
 ---
-title: 第08章 FTP・SFTP
-part: 第3部 アプリケーション通信の基礎
-chapter: 8
+title: 第07章 FTP・SFTP
+part: 第3部 アプリケーションプロトコル
+chapter: 7
 version: 0.1
 status: Draft
 ---
 
-# 第08章 FTP・SFTP
+# 第07章 FTP・SFTP
 
 **― ファイル転送方式の違いを理解する ―**
 

@@ -1,12 +1,12 @@
 ---
-title: 第05章 HTTP
-part: 第3部 アプリケーション通信の基礎
-chapter: 5
+title: 第04章 HTTP
+part: 第3部 アプリケーションプロトコル
+chapter: 4
 version: 0.1
 status: Draft
 ---
 
-# 第05章 HTTP
+# 第04章 HTTP
 
 **― Webの要求と応答を読む ―**
 

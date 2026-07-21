@@ -1,6 +1,6 @@
 ---
 title: 第04章 ARP
-part: 第2部 IPネットワークの基礎
+part: 第2部 IP・TCP/IP・LAN技術
 chapter: 4
 version: 0.1
 status: Draft
